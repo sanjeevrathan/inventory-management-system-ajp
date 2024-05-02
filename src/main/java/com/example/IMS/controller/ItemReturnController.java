@@ -40,14 +40,14 @@ public class ItemReturnController {
 	public String Index(Model model) {
 		model.addAttribute("ItemIssuanceDtoList",
 				itemIssuanceConvertor.modelToDto(itemIssuanceService.getAllReturnedItem()));
-		return "/Item Return/View";
+		return "/Item Return/View.html";
 	}
 
 	@GetMapping("/ItemReturnCreate")
 	public String Create(Model model) {
 		ItemReturnDto itemReturnDto = new ItemReturnDto();
 		model.addAttribute("itemReturnDto", itemReturnDto);
-		return "/Item Return/Create";
+		return "/Item Return/Create.html";
 	}
 
 	@PostMapping("/ItemReturnCreate")
@@ -88,7 +88,7 @@ public class ItemReturnController {
 			result.addError(error);
 		}
 		if (result.hasErrors()) {
-			return "/Item Return/Create";
+			return "/Item Return/Create.html";
 		}
 		return "redirect:/ItemReturnView";
 	}

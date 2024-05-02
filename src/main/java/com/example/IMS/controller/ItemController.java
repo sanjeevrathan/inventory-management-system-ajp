@@ -39,7 +39,7 @@ public class ItemController {
 	@GetMapping("/ItemView")
 	public String View(Model model) {
 		model.addAttribute("itemDtoList", itemConvertor.modelToDto(itemService.getAllItems()));
-		return "/Item/View";
+		return "/Item/View.html";
 	}
 
 	@GetMapping("/ItemCreate")
@@ -47,7 +47,7 @@ public class ItemController {
 		ItemDto itemDto = new ItemDto();
 		model.addAttribute("itemDto", itemDto);
 		model.addAttribute("itemTypeList", itemTypeService.getAllItemTypes());
-		return "/Item/Create";
+		return "/Item/Create.html";
 	}
 
 	@PostMapping("/ItemCreate")
@@ -77,7 +77,7 @@ public class ItemController {
 
 		if (result.hasErrors()) {
 			model.addAttribute("itemDtoList", itemConvertor.modelToDto(itemService.getAllItems()));
-			return "/Item/Create";
+			return "/Item/Create.html";
 		}
 		item = itemConvertor.dtoToModel(itemDto);
 		item.setVendor(vendor);
@@ -91,14 +91,14 @@ public class ItemController {
 		Item item = itemService.getItemById(id);
 		model.addAttribute("itemDto", itemConvertor.modelToDto(item));
 		model.addAttribute("itemTypeList", itemTypeService.getAllItemTypes());
-		return "/Item/Edit";
+		return "/Item/Edit.html";
 	}
 
 	@GetMapping("/ItemDelete/{id}")
 	public String Delete(@PathVariable(value = "id") long id, Model model) {
 		Item item = itemService.getItemById(id);
 		model.addAttribute("itemDto", itemConvertor.modelToDto(item));
-		return "/Item/Delete";
+		return "/Item/Delete.html";
 	}
 
 	@PostMapping("/ItemDelete/{id}")

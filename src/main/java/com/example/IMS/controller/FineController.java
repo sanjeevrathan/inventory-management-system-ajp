@@ -36,7 +36,7 @@ public class FineController {
 	public String Create(Model model) {
 		FineDto fineDto = new FineDto();
 		model.addAttribute("fineDto", fineDto);
-		return "/Fine/Create";
+		return "/Fine/Create.html";
 	}
 
 	@PostMapping("/FineDetails")
@@ -44,7 +44,7 @@ public class FineController {
 		Borrower borrower = borrowerService.getBorrowerById(fineDto.getBorrowerId());
 		double totalFine = borrower.totalFine();
 		fineDto.setTotalFine(totalFine);
-		return "/Fine/Details";
+		return "/Fine/Details.html";
 	}
 
 	@PostMapping("/FinePayment/{borrowerId}")
@@ -59,7 +59,7 @@ public class FineController {
 			borrower = borrowerService.getBorrowerById(fineDto.getBorrowerId());
 		}
 		if (result.hasErrors()) {
-			return "/Fine/Create";
+			return "/Fine/Create.html";
 		}
 		try {
 			borrower.updateFine(fineDto.getFinePaid());

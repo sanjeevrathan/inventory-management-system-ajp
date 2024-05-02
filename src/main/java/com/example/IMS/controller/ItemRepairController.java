@@ -34,14 +34,14 @@ public class ItemRepairController {
 	@GetMapping("/ItemRepairView")
 	public String View(Model model) {
 		model.addAttribute("ItemRepairDtoList", itemRepairConvertor.modelToDto(itemRepairService.getAllRepairItems()));
-		return "/Item Repair/View";
+		return "/Item Repair/View.html";
 	}
 
 	@GetMapping("/ItemRepairCreate")
 	public String Create(Model model) {
 		ItemRepairDto itemRepairDto = new ItemRepairDto();
 		model.addAttribute("itemRepairDto", itemRepairDto);
-		return "/Item Repair/Create";
+		return "/Item Repair/Create.html";
 	}
 
 	@PostMapping("/ItemRepairCreate")
@@ -57,7 +57,7 @@ public class ItemRepairController {
 			result.addError(error);
 		}
 		if (result.hasErrors()) {
-			return "/Item Repair/Create";
+			return "/Item Repair/Create.html";
 		}
 
 		itemRepairService.saveItemRepair(itemRepairConvertor.DtoToModel(itemRepairDto));
@@ -69,14 +69,14 @@ public class ItemRepairController {
 	public String Edit(@PathVariable(value = "id") long id, Model model) {
 		ItemRepair itemRepair = itemRepairService.findItemRepairById(id);
 		model.addAttribute("itemRepairDto", itemRepairConvertor.modelToDto(itemRepair));
-		return "/Item Repair/Edit";
+		return "/Item Repair/Edit.html";
 	}
 
 	@GetMapping("/ItemRepairDelete/{id}")
 	public String Delete(@PathVariable(value = "id") long id, Model model) {
 		ItemRepair itemRepair = itemRepairService.findItemRepairById(id);
 		model.addAttribute("itemRepairDto", itemRepairConvertor.modelToDto(itemRepair));
-		return "/Item Repair/Delete";
+		return "/Item Repair/Delete.html";
 	}
 
 	@PostMapping("/ItemRepairDelete/{id}")

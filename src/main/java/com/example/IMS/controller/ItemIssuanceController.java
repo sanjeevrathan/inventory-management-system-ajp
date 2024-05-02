@@ -75,7 +75,7 @@ public class ItemIssuanceController {
 			}
 		}
 		if (result.hasErrors()) {
-			return "/Item Issuance/Create";
+			return "/Item Issuance/Create.html";
 		}
 		Loan loan = itemIssuanceConvertor.dtoToModel(itemIssuanceDto);
 		borrower.addLoan(loan);
@@ -90,14 +90,14 @@ public class ItemIssuanceController {
 	public String Edit(@PathVariable(value = "id") long id, Model model) {
 		Loan loan = itemIssuanceService.findItemIssuedById(id);
 		model.addAttribute("itemIssuanceDto", itemIssuanceConvertor.modelToDto(loan));
-		return "/Item Issuance/Edit";
+		return "/Item Issuance/Edit.html";
 	}
 
 	@GetMapping("/ItemIssuanceDelete/{id}")
 	public String Delete(@PathVariable(value = "id") long id, Model model) {
 		Loan loan = itemIssuanceService.findItemIssuedById(id);
 		model.addAttribute("itemIssuanceDto", itemIssuanceConvertor.modelToDto(loan));
-		return "/Item Issuance/Delete";
+		return "/Item Issuance/Delete.html";
 	}
 
 	@PostMapping("/ItemIssuanceDelete/{id}")
